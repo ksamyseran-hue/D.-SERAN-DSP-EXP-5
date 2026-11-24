@@ -31,21 +31,89 @@ To perform fundamental Natural Language Processing (NLP) text preprocessing step
 | | `lemmatizer.lemmatize()` | Converts inflected words into their canonical base dictionary forms |
 
 ## Program
+## Input 1
+```
+# Text Preprocessing: Tokenization, Stopword Removal, and Lemmatization using NLTK
+import nltk
+from nltk.corpus import stopwords
+from nltk.tokenize import word_tokenize
+from nltk.stem import WordNetLemmatizer
 
-#Text Preprocessing: Tokenization, Stopword Removal, and Lemmatization using NLTK
+# Step 1: Download NLTK resources
+nltk.download('punkt')
+nltk.download('punkt_tab')
+nltk.download('stopwords')
+nltk.download('wordnet')
+```
+## Output 1
+```
+[nltk_data] Downloading package punkt to /root/nltk_data...
+[nltk_data]   Unzipping tokenizers/punkt.zip.
+[nltk_data] Downloading package punkt_tab to /root/nltk_data...
+[nltk_data]   Unzipping tokenizers/punkt_tab.zip.
+[nltk_data] Downloading package stopwords to /root/nltk_data...
+[nltk_data]   Unzipping corpora/stopwords.zip.
+[nltk_data] Downloading package wordnet to /root/nltk_data...
+```
+## Input 2
+```
+# Step 2: Sample customer feedback text
+text = """The product quality is excellent and the delivery service was very fast.
+However, the packaging could have been better."""
 
+print("---- Original Text ----")
+print(text)
+```
+## Output 2
+```
+---- Original Text ----
+The product quality is excellent and the delivery service was very fast.
+However, the packaging could have been better.
 
-#Step 1: Download NLTK resources
+```
+## Input 3
+```
+# Step 3: Tokenization
+tokens = word_tokenize(text)
+print("\nTokenized Words:")
+print(tokens)
+```
 
-#Step 2: Sample customer feedback text
+## Output 3
+```
+Tokenized Words:
+['The', 'product', 'quality', 'is', 'excellent', 'and', 'the', 'delivery', 'service', 'was', 'very', 'fast', '.', 'However', ',', 'the', 'packaging', 'could', 'have', 'been', 'better', '.']
+```
+## Input 4
+```
+# Step 4: Stopword Removal & Punctuation Filtering
+stop_words = set(stopwords.words('english'))
+filtered_tokens = [
+    word for word in tokens
+    if word.lower() not in stop_words and word.isalpha()
+]
+print("\nAfter Stopword Removal:")
+print(filtered_tokens)
+```
+## Output 4
+```
+After Stopword Removal:
+['product', 'quality', 'excellent', 'delivery', 'service', 'fast', 'However', 'packaging', 'could', 'better']
 
-#Step 3: Tokenization
-
-#Step 4: Stopword Removal & Punctuation Filtering
-
-#Step 5: Lemmatization
-
-## Output
+```
+## Input 5
+```
+# Step 5: Lemmatization
+lemmatizer = WordNetLemmatizer()
+lemmatized_words = [lemmatizer.lemmatize(word.lower()) for word in filtered_tokens]
+print("\nAfter Lemmatization:")
+print(lemmatized_words)
+```
+## Output 5
+```
+After Lemmatization:
+['product', 'quality', 'excellent', 'delivery', 'service', 'fast', 'however', 'packaging', 'could', 'better']
+```
 
 
 ## Result
